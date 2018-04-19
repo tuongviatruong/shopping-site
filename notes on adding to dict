@@ -1,0 +1,20 @@
+>>> cart = {}
+>>> cart['watermelon'] = cart.get('watermelon', 0) + 1
+>>> cart
+{'watermelon': 1}
+>>> cart['watermelon'] = cart.get('watermelon', 0) + 1
+>>> cart
+{'watermelon': 2}
+>>> cart['watermelon'] = cart.get('watermelon', 0) + 1
+>>> cart['watermelon'] = cart.get('watermelon', 0) + 1
+>>> cart['watermelon'] = cart.get('watermelon', 0) + 1
+>>> cart['watermelon'] = cart.get('watermelon', 0) + 1
+>>> cart
+{'watermelon': 6}
+>>> cart = {}
+>>> if 'watermelon' not in cart:
+...     cart['watermelon'] = 1
+... else:
+...     cart['watermelon'] += 1
+... 
+>>> cart
