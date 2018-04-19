@@ -47,9 +47,9 @@ def show_melon(melon_id):
 
     Show all info about a melon. Also, provide a button to buy that melon.
     """
-    <form action = "/add_to_cart/<melon_id>">
-    QTY: <input type="text" name="qty">
-    </form>
+    # <form action = "/add_to_cart/<melon_id>">
+    # QTY: <input type="text" name="qty">
+    # </form>
 
     melon = melons.get_by_id(melon_id)
     print melon
@@ -100,12 +100,19 @@ def add_to_cart(melon_id):
     # - increment the count for that melon id by 1
     # - flash a success message
     # - redirect the user to the cart page
+    if 'cart' not in session:
+        session['cart'] = {}
 
-    session['melon_added'] = melon_id
+    cart = session['cart']
+
+
+    cart[melon_id] = cart.get(melon_id, 0) + 1
+
+    melon_amount = cart[melon_id]   
     melon = melons.get_by_id(melon_id)
     print melon
     return render_template("cart.html",
-                           display_melon=melon)
+                           display_melon=melon, display_qty=melon_amount)
 
 
 @app.route("/login", methods=["GET"])
